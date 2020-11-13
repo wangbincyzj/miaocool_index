@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.95.192.129:3306/miaocool_index?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: wangbin
+    password: wangbin_cyzj
+
+server:
+  port: 3306
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: off
