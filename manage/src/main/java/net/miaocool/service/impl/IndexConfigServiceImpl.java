@@ -1,10 +1,11 @@
-package net.miaocool.service;
+package net.miaocool.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import net.miaocool.entity.IndexConfig;
 import net.miaocool.entity.IndexConfigEnum;
 import net.miaocool.mapper.IndexConfigMapper;
+import net.miaocool.service.IndexConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,11 @@ public class IndexConfigServiceImpl implements IndexConfigService {
 
   @Override
   public void setChatBanner(String url) {
+
+  }
+
+  @Override
+  public void updateHighLights(Object obj) {
 
   }
 

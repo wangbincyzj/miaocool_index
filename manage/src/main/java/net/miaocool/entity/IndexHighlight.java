@@ -1,24 +1,24 @@
 package net.miaocool.entity;
 
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.util.Date;
 
 @Data
-@TableName("index_config")
-public class IndexConfig {
+@TableName("index_highlight")
+public class IndexHighlight{
 
   @TableId(type = IdType.AUTO)
   private Long id;
-  private String tag;
-  private String name;
-  private String value;
-  private String desc;
-  private Date updateTime;
-  private String meta;
+  private String title;
+  private String content;
+  private String iconClass;
+  private String iconUrl;
+  private Integer sort;
+
+  private Long disable;
 
 }

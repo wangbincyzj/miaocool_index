@@ -6,9 +6,10 @@ spring:
     password: wangbin_cyzj
 
 server:
-  port: 3306
+  port: 10086
 
 
 mybatis-plus:
   configuration:
-    map-underscore-to-camel-case: off
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
