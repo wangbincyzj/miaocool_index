@@ -1,0 +1,39 @@
+@import "reset";
+
+
+html{
+  min-width: 1200px;
+}
+
+.container-fluid{
+  width: 100%;
+}
+
+.container{
+  width: 1200px;
+  margin: 0 auto;
+}
+
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  align-items: center;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn{
+  text-align: center;
+  width: 191px;
+  height: 52px;
+  background: #3783FF;
+  line-height: 52px;
+  color: white;
+  cursor: pointer;
+}
