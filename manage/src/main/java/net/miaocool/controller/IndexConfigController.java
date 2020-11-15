@@ -3,40 +3,46 @@ package net.miaocool.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import net.miaocool.entity.IndexConfig;
 import net.miaocool.entity.Resp;
 import net.miaocool.service.IndexConfigService;
+import net.miaocool.service.impl.IndexConfigServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/indexConfig")
-public class IndexConfigController {
-  @Autowired
-  private IndexConfigService service;
+@RequestMapping("/index")
+public class IndexConfigController extends BaseController<IndexConfig> {
 
-  @PostMapping("/setHeaderBanner")
-  public Resp setIndexBanner(HttpServletRequest req) throws IOException {
-    Object url = req.getAttribute("url");
-    service.setHeaderBanner(url.toString());
-    return Resp.ok();
+  public IndexConfigController(IndexConfigServiceImpl service) {
+    super(service);
   }
 
-  @PostMapping("/setServiceBanner")
-  public Resp setServiceBanner(HttpServletRequest req) throws IOException {
-    Object url = req.getAttribute("url");
-    service.setServiceBanner(url.toString());
-    return Resp.ok();
+
+  @Override
+  @PutMapping("/configs")
+  public Resp update(@RequestBody List<IndexConfig> t) {
+    return super.update(t);
   }
 
-  @PostMapping("/setChatBanner")
-  public Resp setChatBanner(HttpServletRequest req) throws IOException {
-    Object url = req.getAttribute("url");
-    service.setChatBanner(url.toString());
-    return Resp.ok();
+
+  @Override
+  @PutMapping("/config")
+  public Resp update(@RequestBody IndexConfig indexConfig) {
+    return super.update(indexConfig, "tag");
   }
+
+  @Override
+  @GetMapping("/config")
+  public Resp getAll(HttpServletRequest request, IndexConfig indexConfig) {
+    return super.getAll(request, indexConfig);
+  }
+
 
 }

@@ -2,8 +2,10 @@ package net.miaocool.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.miaocool.entity.IndexHighlight;
 import net.miaocool.entity.Resp;
 import net.miaocool.service.IndexHighLightService;
@@ -17,47 +19,39 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/index")
-public class IndexHighlightController {
-  @Autowired
-  private IndexHighLightService service;
+public class IndexHighlightController extends BaseController<IndexHighlight> {
 
-  @GetMapping("/highLight")
-  public Resp getAll(HttpServletRequest req, IndexHighlight indexHighlight) {
-    IPage<IndexHighlight> page = PagerUtil.parse(req, IndexHighlight.class);
-    QueryWrapper<IndexHighlight> qw = new QueryWrapper<>();
-    qw.orderByAsc("sort");
-    qw.setEntity(indexHighlight);
-    Object ret;
-    if(null == page){
-      ret = service.list(qw);
-    }else{
-      ret = service.page(page, qw);
-    }
-    return Resp.ok(ret);
+  public IndexHighlightController(ServiceImpl<? extends BaseMapper<IndexHighlight>, IndexHighlight> service) {
+    super(service);
   }
 
-  @GetMapping("/highLight/{id}")
-  public Resp getOne(@PathVariable("id") int id) {
-    IndexHighlight one = service.getById(id);
-    return Resp.ok(one);
+  @Override
+  @GetMapping("/highlight")
+  public Resp getAll(HttpServletRequest request, IndexHighlight indexHighlight) {
+    return super.getAll(request, indexHighlight);
   }
 
-  @PostMapping("/highLight")
-  public Resp add(@RequestBody IndexHighlight highlight) {
-    boolean save = service.save(highlight);
-    return Resp.ok(save);
+  @Override
+  @GetMapping("/highlight/{id}")
+  public Resp getOne(@PathVariable int id) {
+    return super.getOne(id);
   }
 
-  @PutMapping("/highLight")
-  public Resp update(@RequestBody IndexHighlight highlight) {
-    UpdateWrapper<IndexHighlight> uw = new UpdateWrapper<>();
-    service.updateById(highlight);
-    return Resp.ok();
+  @Override
+  @PostMapping("/highlight")
+  public Resp insert(@RequestBody IndexHighlight indexHighlight) {
+    return super.insert(indexHighlight);
   }
 
-  @DeleteMapping("/highLight")
+  @Override
+  @PutMapping("/highlight")
+  public Resp update(@RequestBody IndexHighlight indexHighlight) {
+    return super.update(indexHighlight);
+  }
+
+  @Override
+  @DeleteMapping("/highlight")
   public Resp delete(HttpServletRequest req) {
-    Object id = req.getAttribute("id");
-    return Resp.ok();
+    return super.delete(req);
   }
 }

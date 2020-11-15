@@ -1,13 +1,9 @@
 package net.miaocool.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import net.miaocool.entity.IndexCase;
 import net.miaocool.entity.Resp;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.miaocool.service.impl.IndexCaseServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/index")
 public class IndexCaseController extends BaseController<IndexCase> {
 
-  @Autowired
-  public IndexCaseController(ServiceImpl<? extends BaseMapper<IndexCase>, IndexCase> service) {
+  public IndexCaseController(IndexCaseServiceImpl service) {
     super(service);
   }
 
@@ -25,6 +20,12 @@ public class IndexCaseController extends BaseController<IndexCase> {
   @GetMapping("/case")
   public Resp getAll(HttpServletRequest request, IndexCase indexCase) {
     return super.getAll(request, indexCase);
+  }
+
+  @Override
+  @PostMapping("/case")
+  public Resp insert(@RequestBody IndexCase indexCase) {
+    return super.insert(indexCase);
   }
 
   @Override

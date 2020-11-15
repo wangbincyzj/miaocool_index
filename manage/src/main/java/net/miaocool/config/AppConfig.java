@@ -7,11 +7,13 @@ import net.miaocool.filter.JsonFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HttpPutFormContentFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.Filter;
 
 @Configuration
-public class AppConfig {
+public class AppConfig implements WebMvcConfigurer {
   @Bean
   public Filter filter() {
     return new JsonFilter();
@@ -26,5 +28,12 @@ public class AppConfig {
     return paginationInterceptor;
   }
 
-
+  @Override
+  public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**")
+        .allowedOrigins("*")
+        .allowedMethods("GET","HEAD","POST","PUT","DELETE","OPTIONS")
+        .maxAge(3600)
+        .allowedHeaders("*");
+  }
 }
